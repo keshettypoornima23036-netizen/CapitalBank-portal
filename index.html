@@ -231,22 +231,11 @@
     flex-shrink: 0;
   }
 
-  /* ── CHAT PANEL ── */
+  /* ── RIGHT PANEL ── */
   .hero-right {
     display: flex;
     flex-direction: column;
-  }
-
-  .chat-card {
-    background: var(--white);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.35);
-    border: 1px solid rgba(255,255,255,0.1);
-    height: 560px;
-    display: flex;
-    flex-direction: column;
-    animation: slideUp 0.6s ease both;
+    gap: 20px;
   }
 
   @keyframes slideUp {
@@ -254,58 +243,159 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .chat-header {
-    background: linear-gradient(90deg, var(--navy), var(--navy-mid));
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
+  .action-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: slideUp 0.6s ease both;
+    padding: 40px 36px;
   }
 
-  .chat-avatar {
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    border-radius: 50%;
+  .action-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .action-avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .action-info-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
     color: var(--navy);
   }
 
-  .chat-header-info {}
-
-  .chat-header-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--white);
-  }
-
-  .chat-header-status {
-    font-size: 11px;
-    color: rgba(255,255,255,0.6);
+  .action-info-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-top: 1px;
   }
 
   .status-dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: #4caf76;
     border-radius: 50%;
+    animation: pulse 2s infinite;
   }
 
-  .chat-frame {
-    flex: 1;
-    border: none;
-    width: 100%;
+  .action-message {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .action-message strong {
+    color: var(--navy);
+  }
+
+  .doc-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .doc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--cream);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dark);
+  }
+
+  .doc-icon {
+    font-size: 16px;
+  }
+
+  .doc-label { flex: 1; font-weight: 500; }
+
+  .doc-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .doc-tag.required {
+    background: rgba(201,168,76,0.15);
+    color: #8a6d1a;
+  }
+
+  .start-btn {
     display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .start-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .start-btn:hover::before { opacity: 1; }
+
+  .start-btn span {
+    position: relative;
+    z-index: 1;
+    color: var(--white);
+  }
+
+  .start-btn:hover span { color: var(--navy); }
+
+  .start-btn-sub {
+    font-size: 11px;
+    opacity: 0.7;
+    display: block;
+    margin-top: 2px;
+    font-weight: 400;
   }
 
   /* ── INFO STRIP ── */
@@ -515,24 +605,49 @@
     </div>
 
     <div class="hero-right">
-      <div class="chat-card">
-        <div class="chat-header">
-          <div class="chat-avatar">CB</div>
-          <div class="chat-header-info">
-            <div class="chat-header-name">CapitalBank Document Assistant</div>
-            <div class="chat-header-status">
+      <div class="action-card">
+        <div class="action-card-top">
+          <div class="action-avatar">CB</div>
+          <div>
+            <div class="action-info-name">CapitalBank Document Assistant</div>
+            <div class="action-info-sub">
               <div class="status-dot"></div>
               Online · Ready to assist
             </div>
           </div>
         </div>
-        <iframe
-          src="https://copilotstudio.microsoft.com/environments/Default-efe60221-cdd1-4867-aacd-c78966781692/bots/cr815_CapitalBank/webchat?__version__=2"
-          frameborder="0"
-          allow="microphone *"
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
-          title="CapitalBank Document Assistant">
-        </iframe>
+
+        <p class="action-message">
+          Hello! I'm here to guide you through your 
+          <strong>financial document submission</strong>. 
+          Click the button below to open a secure chat session 
+          where I'll walk you through each document step by step.
+        </p>
+
+        <div class="doc-checklist">
+          <div class="doc-item">
+            <span class="doc-icon">📊</span>
+            <span class="doc-label">Balance Sheet</span>
+            <span class="doc-tag required">Required</span>
+          </div>
+          <div class="doc-item">
+            <span class="doc-icon">📈</span>
+            <span class="doc-label">Income Statement</span>
+            <span class="doc-tag required">Required</span>
+          </div>
+          <div class="doc-item">
+            <span class="doc-icon">🧾</span>
+            <span class="doc-label">Tax Return</span>
+            <span class="doc-tag required">Required</span>
+          </div>
+        </div>
+
+        <a href="DEMO_WEBSITE_URL_HERE" target="_blank" class="start-btn">
+          <span>
+            Start Document Submission
+            <span class="start-btn-sub">Opens secure chat assistant</span>
+          </span>
+        </a>
       </div>
     </div>
   </div>
