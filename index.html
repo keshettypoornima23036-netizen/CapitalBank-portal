@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CapitalBank – Document Submission Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1f3d;
+    --navy-mid: #132d56;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --text-dark: #1a1a2e;
+    --text-muted: #6b7a8d;
+    --border: #ddd5c4;
+    --shadow: 0 8px 40px rgba(10,31,61,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--navy);
+    padding: 0 48px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--navy);
+    letter-spacing: -1px;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.3px;
+    line-height: 1;
+  }
+
+  .logo-tagline {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 3px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .secure-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+  }
+
+  .secure-dot {
+    width: 6px;
+    height: 6px;
+    background: #4caf76;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── HERO SECTION ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3a6e 100%);
+    padding: 64px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 30%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .hero-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .step-num {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  /* ── CHAT PANEL ── */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.6s ease both;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-header {
+    background: linear-gradient(90deg, var(--navy), var(--navy-mid));
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .chat-avatar {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+  }
+
+  .chat-header-info {}
+
+  .chat-header-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .chat-header-status {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 1px;
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+    background: #4caf76;
+    border-radius: 50%;
+  }
+
+  .chat-frame {
+    flex: 1;
+    border: none;
+    width: 100%;
+    display: block;
+  }
+
+  /* ── INFO STRIP ── */
+  .info-strip {
+    background: var(--navy);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 10px 48px;
+  }
+
+  .info-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .info-icon {
+    color: var(--gold);
+    font-size: 14px;
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 56px 48px;
+    background: var(--cream);
+  }
+
+  .features-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 40px;
+    font-weight: 600;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .feature-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, rgba(10,31,61,0.08), rgba(10,31,61,0.04));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 24px 48px;
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--gold);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+    .hero { padding: 40px 20px; }
+    .hero-content { grid-template-columns: 1fr; gap: 32px; }
+    .hero-title { font-size: 28px; }
+    .chat-card { height: 480px; }
+    .features { padding: 40px 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    footer { padding: 20px; }
+    .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    .info-strip { padding: 10px 20px; }
+    .info-strip-inner { flex-wrap: wrap; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-mark">CB</div>
+    <div class="logo-text">
+      <span class="logo-name">CapitalBank</span>
+      <span class="logo-tagline">Commercial Lending</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="secure-badge">
+      <div class="secure-dot"></div>
+      Secure Session Active
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        📋 Document Submission Portal
+      </div>
+      <h1 class="hero-title">
+        Submit Your<br>
+        <span>Financial Documents</span><br>
+        Securely
+      </h1>
+      <p class="hero-subtitle">
+        Our AI-assisted document assistant will guide you through 
+        submitting the required financial documents for your loan review. 
+        The process is simple, secure, and takes only a few minutes.
+      </p>
+      <div class="hero-steps">
+        <div class="hero-step">
+          <div class="step-num">1</div>
+          <span>Select your document review type</span>
+        </div>
+        <div class="hero-step">
+          <div class="step-num">2</div>
+          <span>Upload each required document when prompted</span>
+        </div>
+        <div class="hero-step">
+          <div class="step-num">3</div>
+          <span>Receive confirmation — your RM is notified automatically</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="chat-card">
+        <div class="chat-header">
+          <div class="chat-avatar">CB</div>
+          <div class="chat-header-info">
+            <div class="chat-header-name">CapitalBank Document Assistant</div>
+            <div class="chat-header-status">
+              <div class="status-dot"></div>
+              Online · Ready to assist
+            </div>
+          </div>
+        </div>
+        <iframe
+          class="chat-frame"
+          src="https://copilotstudio.microsoft.com/environments/Default-efe60221-cdd1-4867-aacd-c78966781692/bots/cr815_CapitalBank/webchat?__version__=2"
+          frameborder="0"
+          allow="microphone"
+          title="CapitalBank Document Assistant">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item">
+      <span class="info-icon">🔒</span>
+      <span>256-bit encrypted connection</span>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">📁</span>
+      <span>Documents stored securely in SharePoint</span>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">👤</span>
+      <span>Your RM is notified upon submission</span>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">✅</span>
+      <span>FDIC compliant document handling</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Simple, Guided Document Submission</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI-Guided Process</div>
+        <p class="feature-desc">Our intelligent assistant walks you through each required document step by step, ensuring nothing is missed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📂</div>
+        <div class="feature-title">Automatic Organization</div>
+        <p class="feature-desc">Every document you upload is automatically categorized and stored in the correct folder for your review team.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-title">Instant RM Notification</div>
+        <p class="feature-desc">Your Relationship Manager receives an immediate notification when your submission is complete and ready for review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      © 2026 CapitalBank Commercial Lending. All rights reserved.
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Contact Support</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
